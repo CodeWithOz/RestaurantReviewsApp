@@ -1,0 +1,10 @@
+{
+  "name": "restaurantreviewsapp",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.1"
+  },
+  "devDependencies": {
+    "jasmine-core": "jasmine#^3.3.0"
+  }
+}
