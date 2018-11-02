@@ -4,16 +4,16 @@ program. See the original repository [here](https://github.com/udacity/mws-resta
 _**Note**_ that this is the Google Maps branch.
 
 ## Developer Set Up
-First, copy the app's files to your local environment by running:
+First, copy the app's files to your local environment by opening
+your terminal program and running:
 ```
 git clone https://github.com/CodeWithOz/RestaurantReviewsApp.git
 ```
-from the command line. Alternatively, you can download the zip files
-and unzip them into your chosen destination folder. If you are new to
-git, visit its [official website](https://git-scm.com/) for more information.
+Alternatively, you can download the zip files and unzip them
+into your chosen destination folder. If you are new to git, check out
+[this cool tutorial](https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud).
 
-Next, we must install the dependencies. Open your terminal program
-and run
+Next, we must install the dependencies. Run
 ```
 npm install
 ```
@@ -29,10 +29,22 @@ On Windows systems running PowerShell, the [correct condensed form](https://stac
 ```
 npm install; if ($?) { bower install }
 ```
-If you are new to package management, read more about [npm](npmjs.com) and
-[bower](https://bower.io/).
+If you are new to package management, read more about
+[npm](https://www.sitepoint.com/beginners-guide-node-package-manager/)
+and [bower](https://bower.io/) (though Bower is being phased out).
 
-[//]: # (TODO: Finish instructions for running the dev server with Gulp)
+After installing the dependencies, start the local server by running
+```
+gulp serve
+```
+Visit `localhost:9000` in your browser to view and use the web app.
+That's it! 😄
+
+#### Options for `gulp serve`
+[Gulp](https://gulpjs.com/) is the build tool of choice for this project.
+The app was scaffolded using [Yeoman's](http://yeoman.io/)
+`generator-webapp`. [Check out](https://github.com/yeoman/generator-webapp#getting-started)
+the other `gulp serve` options available with this generator.
 
 ## Contributing
 I will be happy to accept improvements to this project once it has
