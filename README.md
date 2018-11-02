@@ -4,13 +4,13 @@ program. See the original repository [here](https://github.com/udacity/mws-resta
 _**Note**_ that this is the Google Maps branch.
 
 ## Developer Set Up
-First copy the app's files to your local environment by running:
+First, copy the app's files to your local environment by running:
 ```
 git clone https://github.com/CodeWithOz/RestaurantReviewsApp.git
 ```
 from the command line. Alternatively, you can download the zip files
-and unzip them into your chosen destination. If you are new to git,
-see the [official website](https://git-scm.com/) for more information.
+and unzip them into your chosen destination folder. If you are new to
+git, visit its [official website](https://git-scm.com/) for more information.
 
 Next, we must install the dependencies. Open your terminal program
 and run
