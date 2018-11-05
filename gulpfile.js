@@ -101,12 +101,14 @@ gulp.task('serve', () => {
       }
     });
 
+    // notify LiveReload when compiled assets change
     gulp.watch([
       'app/*.html',
       'app/images/**/*',
       '.tmp/fonts/**/*'
     ]).on('change', reload);
 
+    // run the compile task when source assets change
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/fonts/**/*', ['fonts']);
