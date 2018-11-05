@@ -32,5 +32,9 @@
         "allow": ["warn", "error"]
       }
     ]
+  },
+  "globals": {
+    "DBHelper": false,
+    "google": false
   }
 }
