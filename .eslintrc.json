@@ -1,36 +1,36 @@
 {
   "env": {
-      "browser": true,
-      "commonjs": true,
-      "es6": true,
-      "node": true
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-      "ecmaVersion": 2015
+    "ecmaVersion": 2015
   },
   "rules": {
-      "indent": [
-          2,
-          2
-      ],
-      "linebreak-style": [
-          2,
-          "unix"
-      ],
-      "quotes": [
-          2,
-          "single"
-      ],
-      "semi": [
-          2,
-          "always"
-      ],
-      "no-console": [
-        2,
-        {
-          "allow": ["warn", "error"]
-        }
-      ]
+    "indent": [
+      2,
+      2
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-console": [
+      2,
+      {
+        "allow": ["warn", "error"]
+      }
+    ]
   }
 }
