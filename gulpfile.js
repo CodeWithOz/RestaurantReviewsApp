@@ -5,6 +5,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
+const argv = require('yargs').argv;
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -92,7 +93,7 @@ gulp.task('serve', () => {
   runSequence(['clean', 'wiredep'], ['styles', 'scripts', 'fonts'], () => {
     browserSync.init({
       notify: false,
-      port: 9000,
+      port: typeof argv.port === 'number' ? argv.port : 9000,
       server: {
         baseDir: ['.tmp', 'app'],
         routes: {
@@ -119,7 +120,7 @@ gulp.task('serve', () => {
 gulp.task('serve:dist', ['default'], () => {
   browserSync.init({
     notify: false,
-    port: 9000,
+    port: typeof argv.port === 'number' ? argv.port : 9000,
     server: {
       baseDir: ['dist']
     }
@@ -129,7 +130,7 @@ gulp.task('serve:dist', ['default'], () => {
 gulp.task('serve:test', ['scripts'], () => {
   browserSync.init({
     notify: false,
-    port: 9000,
+    port: typeof argv.port === 'number' ? argv.port : 9001,
     ui: false,
     server: {
       baseDir: 'test',
