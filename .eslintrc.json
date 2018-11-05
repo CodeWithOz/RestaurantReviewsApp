@@ -25,6 +25,12 @@
       "semi": [
           2,
           "always"
+      ],
+      "no-console": [
+        2,
+        {
+          "allow": ["warn", "error"]
+        }
       ]
   }
 }
