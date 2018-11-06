@@ -285,6 +285,15 @@ nav h1 a {
   }
 }
 
+@media screen and (min-width: 850px) {
+  #restaurants-list li {
+    /* show 2 restaurants per line */
+    /* 30px is the total left and right margin */
+    /* 4 px is the total left and right border */
+    width: calc(33% - 34px);
+  }
+}
+
 /* ====================== Restaurant Details ====================== */
 .inside header {
   position: fixed;
