@@ -155,6 +155,16 @@ nav h1 a {
   background-color: #ccc;
 }
 
+/* =============== Main Content Responsive Breakpoint =============== */
+@media screen and (min-width: 1000px) {
+  main {
+    border-left: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;
+    margin: 0 auto;
+    width: 950px;
+  }
+}
+
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   align-items: center;
