@@ -213,6 +213,11 @@ nav h1 a {
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
   background-color: #f3f3f3;
+  display: flex;
+
+  /* ensure the child li elements don't stay on one line */
+  flex-wrap: wrap;
+
   list-style: outside none none;
   margin: 0;
   padding: 30px 15px 60px;
@@ -269,6 +274,15 @@ nav h1 a {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+@media screen and (min-width: 600px) {
+  #restaurants-list li {
+    /* show 2 restaurants per line */
+    /* 30px is the total left and right margin */
+    /* 4 px is the total left and right border */
+    width: calc(50% - 34px);
+  }
 }
 
 /* ====================== Restaurant Details ====================== */
