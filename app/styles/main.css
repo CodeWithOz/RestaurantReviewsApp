@@ -138,7 +138,17 @@ nav h1 a {
     text-decoration: underline;
 }
 
+/* ====================== Map & Filter section ====================== */
+.restaurant-controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* ====================== Map ====================== */
+#map-container {
+  width: 100%;
+}
+
 #map {
   height: 300px;
   width: 100%;
@@ -147,9 +157,13 @@ nav h1 a {
 
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
+  align-items: center;
   background-color: #5dbbfa;
+  display: flex;
+  justify-content: center;
   text-align: center;
   padding: 1em;
+  width: 100%;
 }
 
 .filter-options h2 {
@@ -177,6 +191,23 @@ nav h1 a {
   margin: 10px;
   padding: 0 10px;
   width: 200px;
+}
+
+/* ========== Map & Filter Controls Responsive Breakpoints ========== */
+@media screen and (min-width: 500px) {
+  #map-container {
+    width: 60%;
+  }
+
+  .filter-options {
+    /* 2em is the total left and right horizontal padding */
+    width: calc(40% - 2em);
+  }
+
+  .filter-options select {
+    /* 20px is the total left and right horizontal margin */
+    width: calc(100% - 20px);
+  }
 }
 
 /* ====================== Restaurant Listing ====================== */
