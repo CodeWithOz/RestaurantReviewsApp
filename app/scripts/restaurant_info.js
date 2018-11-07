@@ -142,7 +142,12 @@ const createReviewHTML = (review) => {
 const fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
-  li.innerHTML = restaurant.name;
+
+  // make text bold
+  const strong = document.createElement('strong');
+  strong.innerHTML = restaurant.name;
+
+  li.appendChild(strong);
   breadcrumb.appendChild(li);
 }
 
