@@ -286,6 +286,7 @@ nav h1 a {
   text-transform: uppercase;
 }
 
+/* ============= Restaurant List Responsive Breakpoint ============= */
 @media screen and (min-width: 600px) {
   #restaurants-list li {
     /* show 2 restaurants per line */
