@@ -1,0 +1,156 @@
+/* ====================== Map & Filter section ====================== */
+.restaurant-controls {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ====================== Map ====================== */
+#map-container {
+  width: 100%;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  background-color: #ccc;
+}
+
+/* ====================== Restaurant Filtering ====================== */
+.filter-options {
+  align-items: center;
+  background-color: #5dbbfa;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+}
+
+.filter-options h2 {
+  color: #000;
+  font-size: 1.3rem;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+}
+
+.filter-options label {
+  color: #000;
+  display: block;
+  font-size: 1.2em;
+  padding: 10px 0 0 0;
+}
+
+.filter-options select {
+  background-color: white;
+  border: 1px solid #fff;
+  font-family: Arial,sans-serif;
+  font-size: 11pt;
+  height: 35px;
+  letter-spacing: 0;
+  margin: 10px;
+  padding: 0 10px;
+  width: 200px;
+}
+
+/* ========== Map & Filter Controls Responsive Breakpoints ========== */
+@media screen and (min-width: 500px) {
+  #map-container {
+    width: 60%;
+  }
+
+  .filter-options {
+    /* 2em is the total left and right horizontal padding */
+    width: calc(40% - 2em);
+  }
+
+  .filter-options select {
+    /* 20px is the total left and right horizontal margin */
+    width: calc(100% - 20px);
+  }
+}
+
+/* ====================== Restaurant Listing ====================== */
+#restaurants-list {
+  background-color: #f3f3f3;
+  display: flex;
+
+  /* ensure the child li elements don't stay on one line */
+  flex-wrap: wrap;
+
+  list-style: outside none none;
+  margin: 0;
+  padding: 30px 15px 60px;
+  text-align: center;
+}
+
+#restaurants-list section {
+  /* pad the text content a little */
+  padding: 0 30px 25px;
+}
+
+#restaurants-list li {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 30px 0;
+  font-family: Arial,sans-serif;
+  margin: 15px;
+  min-height: 380px;
+  text-align: left;
+}
+
+#restaurants-list .restaurant-img {
+  background-color: #ccc;
+  border-top-left-radius: 28px;
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+#restaurants-list li h1 {
+  color: #2500ff;
+  font-family: Arial,sans-serif;
+  font-size: 14pt;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: 1.3;
+  margin: 20px 0 10px;
+  text-transform: uppercase;
+}
+
+#restaurants-list p {
+  margin: 0;
+  font-size: 11pt;
+}
+
+#restaurants-list li a {
+  background-color: orange;
+  border-bottom: 3px solid #eee;
+  color: #000;
+  display: inline-block;
+  font-size: 10pt;
+  margin: 15px 0 0;
+  padding: 8px 30px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* ============= Restaurant List Responsive Breakpoint ============= */
+@media screen and (min-width: 600px) {
+  #restaurants-list li {
+    /* show 2 restaurants per line */
+    /* 30px is the total left and right margin */
+    /* 4 px is the total left and right border */
+    width: calc(50% - 34px);
+  }
+}
+
+@media screen and (min-width: 850px) {
+  #restaurants-list li {
+    /* show 2 restaurants per line */
+    /* 30px is the total left and right margin */
+    /* 4 px is the total left and right border */
+    width: calc(33% - 34px);
+  }
+}
