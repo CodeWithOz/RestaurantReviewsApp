@@ -35,25 +35,25 @@
 }
 
 /* ====================== Restaurant Details ====================== */
-.inside header {
+header {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
 }
 
-.inside #map-container {
+#map-container {
   background: blue none repeat scroll 0 0;
   width: 100%;
 }
 
-.inside #map {
+#map {
   background-color: #ccc;
   height: 100%;
   width: 100%;
 }
 
-.inside #footer {
+#footer {
   bottom: 0;
   position: absolute;
   width: 50%;
