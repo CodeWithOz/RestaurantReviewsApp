@@ -193,3 +193,22 @@
   border-radius: 4px;
   padding: 0.4em 1em;
 }
+
+/* =========== Reviews Section Responsive Breakpoint =========== */
+@media screen and (min-width: 700px) {
+  #reviews-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #reviews-list li {
+    margin: 0 0.5em 1em;
+    width: calc(50% - 1em);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #reviews-list li {
+    width: calc(33% - 1em);
+  }
+}
