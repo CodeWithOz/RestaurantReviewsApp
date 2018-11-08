@@ -69,6 +69,22 @@
   width: 100%;
 }
 
+/* ============== Map-Name-Pic Responsive Breakpoint ============== */
+@media screen and (min-width: 700px) {
+  #map-container {
+    width: 50%;
+    height: unset;
+  }
+
+  #restaurant-name {
+    order: -1;
+  }
+
+  .img-container {
+    width: 50%;
+  }
+}
+
 /* ====================== Restaurant Info ====================== */
 #restaurant-info {
   border-bottom: 1px solid #d9d9d9;
