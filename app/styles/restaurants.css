@@ -108,6 +108,11 @@
   margin: 0 1em;
 }
 
+.restaurant-location,
+#restaurant-hours {
+  width: 100%;
+}
+
 #restaurant-borough,
 #restaurant-address {
   font-size: 12pt;
