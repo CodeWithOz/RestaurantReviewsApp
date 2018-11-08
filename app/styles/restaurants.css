@@ -118,6 +118,7 @@
   font-weight: 300;
   letter-spacing: -1px;
   padding-bottom: 1pt;
+  text-align: center;
 }
 
 #reviews-list {
@@ -127,18 +128,41 @@
 
 #reviews-list li {
   background-color: #fff;
-  border: 2px solid #f3f3f3;
+  border-radius: 20px 0;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-  padding: 0 20px 20px;
   position: relative;
-  width: 85%;
 }
 
-#reviews-list li p {
-  margin: 0 0 10px;
+.review-header {
+  align-items: center;
+  background-color: #333;
+  display: flex;
+  padding: 0 2em;
+  justify-content: space-between;
+}
+
+.review-header p {
+  color: #ddd;
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+.review-body {
+  padding: 0 2em;
+}
+
+.review-body p {
+  margin: 15px 0;
+  text-align: justify;
+}
+
+.review-body p span {
+  background-color: orange;
+  border-radius: 4px;
+  padding: 0.4em 1em;
 }
 
 #footer {
