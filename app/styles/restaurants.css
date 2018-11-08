@@ -128,6 +128,14 @@
   font-size: 1.2em;
 }
 
+/* =========== Restaurant Info Responsive Breakpoints =========== */
+@media screen and (min-width: 600px) {
+  .restaurant-location,
+  #restaurant-hours {
+    width: 50%;
+  }
+}
+
 /* ====================== Reviews Section ====================== */
 #reviews-container {
   padding: 1em;
