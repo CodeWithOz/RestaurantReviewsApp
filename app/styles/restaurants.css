@@ -24,7 +24,7 @@
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #0275d8;
+    color: #2500ff;
     text-decoration: none;
 }
 
@@ -53,7 +53,7 @@
 }
 
 #restaurant-name {
-  color: #f18200;
+  color: #2500ff;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -113,7 +113,7 @@
 }
 
 #reviews-container h2 {
-  color: #f58500;
+  color: #2500ff;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
