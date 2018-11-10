@@ -1,3 +1,56 @@
+/* ============= Service Worker ============= */
+registerServiceWorker();
+
+function registerServiceWorker() {
+  // exit if browser doesn't support SW
+  // TODO: this needs to be negated when it's time to test
+  if (navigator.serviceWorker) return;
+
+  navigator.serviceWorker.register('/sw.js')
+    .then(reg => {
+      // registration worked!
+
+      // exit if page was not loaded with a service worker
+      if (!navigator.serviceWorker.controller) return;
+
+      /* ========== notify user about updates ========== */
+      if (reg.waiting) {
+        // the new service worker is installed and ready to activate
+      }
+
+      if (reg.installing) {
+        // the new service worker is installing
+        // listen for when it's installed
+        notifyOnInstall(reg.installing);
+      }
+
+      function notifyOnInstall(worker) {
+        worker.addEventListener('statechange', () => {
+          if (worker.state === 'installed') {
+            // notify the user
+          }
+        });
+      }
+
+      reg.addEventListener('updatefound', () => {
+        // reg.installing has become a new SW
+        // so repeat the steps as if reg.installing is already present
+        notifyOnInstall(reg.installing);
+      });
+
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        // navigator.serviceWorker.controller has changed
+        // which means a new service worker now controls this page
+        // so reload this page to start using the new SW
+        window.location.reload();
+      });
+    })
+    .catch(err => {
+      // registration failed
+      console.warn(`SW registration failed with message: ${err}`);
+    });
+}
+
 /**
  * Common database helper functions.
  */
