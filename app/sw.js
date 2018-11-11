@@ -41,6 +41,20 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   // this event happens when the SW is instructed to take over a page
   // delete the old cache here using event.waitUntil()
+
+  // STEPS:
+  // get an array of all cache names
+  // delete the prefixed ones that are not the current one
+  event.waitUntil(
+    caches.keys()
+      .then(names => {
+        return Promise.all(
+          names.filter(name => {
+            return name.startsWith(cacheNamePrefix) && name !== cacheName;
+          }).map(name => caches.delete(name))
+        );
+      })
+  );
 });
 
 // listen for requests
