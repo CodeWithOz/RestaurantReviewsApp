@@ -60,7 +60,6 @@ self.addEventListener('activate', event => {
 // listen for requests
 self.addEventListener('fetch', event => {
   // use event.respondWith to return cached items if necessary (eg. offline)
-  // something like this
   event.respondWith(
     caches.match(event.request)
       .then(response => {
