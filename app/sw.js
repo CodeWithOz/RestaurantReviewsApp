@@ -1,7 +1,40 @@
+// caches start with the same prefix
+const cacheNamePrefix = 'RestRevsCache-';
+
+// append a random string to the prefix
+// see https://stackoverflow.com/a/8084248/7987987 for random string generator
+const cacheNameSuffix = Math.random().toString(36).substring(2);
+const cacheName = cacheNamePrefix + cacheNameSuffix;
+
 // listen for the SW installation
 self.addEventListener('install', event => {
   // this event happens before the SW is installed
   // caching occurs here using event.waitUntil()
+  const assets = [
+    '/',
+    '/restaurant.html',
+    'styles/main.css',
+    'styles/index.css',
+    'styles/restaurants.css',
+    'scripts/dbhelper.js',
+    'scripts/main.js',
+    'scripts/restaurant_info.js',
+    'data/restaurants.json'
+  ];
+
+  // add the images
+  // see https://stackoverflow.com/a/29559488/7987987 for range generator
+  Array.from({length: 10}, (_, i) => i + 1).forEach(num => {
+    assets.push(`images/${num}.jpg`);
+  });
+
+  event.waitUntil(
+    caches.open(cacheName)
+      .then(cache => {
+        // cache the necessary assets
+        return cache.addAll(assets);
+      })
+  );
 });
 
 // listen for the SW activation
