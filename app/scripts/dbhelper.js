@@ -21,117 +21,13 @@ function registerServiceWorker() {
       if (reg.waiting) {
         // the new service worker is installed and ready to activate
         console.log('A new SW is installed and ready to activate!');
-      }
-
-      /**
-      * Display the update notification to the user
-      */
-      function handleUpdateToSW(worker) {
-
-        createNotificationHTML(worker);
-
-        function createNotificationHTML(worker) {
-          let currentFocus;
-
-          const container = document.createElement('div');
-          const title = document.createElement('h4');
-          title.innerText = 'Updates Available';
-          container.append(title);
-
-          // buttons
-          const btnParagraph = document.createElement('p');
-          const updateBtn = createButton('Update');
-          updateBtn.addEventListener('click', () => {
-            // update the service worker
-            worker.postMessage({action: 'update'});
-          });
-          btnParagraph.append(updateBtn);
-
-          const dismissBtn = createButton('Dismiss');
-          dismissBtn.addEventListener('click', () => {
-            // first move the container offscreen
-            notifSection.classList.remove('shown');
-
-            // remove the content
-            container.remove();
-
-            // remove the section from the accesibility tree
-            notifSection.classList.remove('accessible');
-
-            // move focus back to the previously-focused element
-            currentFocus.focus();
-          });
-
-          btnParagraph.append(dismissBtn);
-
-          container.append(btnParagraph);
-
-          // add the notification section to the accesibility tree
-          // this ensures that the newly added content will be
-          // announced
-          const notifSection = document.querySelector('.notification');
-          notifSection.classList.add('accessible');
-
-          // now add the content
-          notifSection.append(container);
-
-          // display it
-          notifSection.classList.add('shown');
-
-          // save the currently focused item
-          currentFocus = document.activeElement;
-
-          // move focus to update button
-          updateBtn.focus();
-
-          // trap tab key
-          notifSection.addEventListener('keydown', trapTabKey);
-
-          function createButton(text) {
-            const btn = document.createElement('button');
-            btn.innerText = text;
-            btn.setAttribute('type', 'button');
-            btn.setAttribute('aria-labelledby', text.toLowerCase());
-            return btn;
-          }
-
-          // see https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex#modals-and-keyboard-traps
-          function trapTabKey(event) {
-            // Check for TAB key press
-            if (event.keyCode === 9) {
-              event.preventDefault();
-
-              if (document.activeElement === updateBtn) {
-                dismissBtn.focus();
-              } else {
-                updateBtn.focus();
-              }
-            }
-
-            // ESCAPE
-            if (event.keyCode === 27) {
-              // same as clicking dismiss button
-              dismissBtn.click();
-            }
-          }
-        }
-
+        handleUpdateToSW(reg.waiting);
       }
 
       if (reg.installing) {
         // the new service worker is installing
         // listen for when it's installed
-        console.log('A new SW is installing...');
         notifyOnInstall(reg.installing);
-      }
-
-      function notifyOnInstall(worker) {
-        worker.addEventListener('statechange', () => {
-          if (worker.state === 'installed') {
-            // notify the user
-            console.log('A new SW has installed!');
-          }
-        });
       }
 
       reg.addEventListener('updatefound', () => {
@@ -152,6 +48,111 @@ function registerServiceWorker() {
       // registration failed
       console.warn(`SW registration failed with message: ${err}`);
     });
+
+
+  /**
+  * Display the update notification to the user
+  */
+  function handleUpdateToSW(worker) {
+
+    createNotificationHTML(worker);
+
+    function createNotificationHTML(worker) {
+      let currentFocus;
+
+      const container = document.createElement('div');
+      const title = document.createElement('h4');
+      title.innerText = 'Updates Available';
+      container.append(title);
+
+      // buttons
+      const btnParagraph = document.createElement('p');
+      const updateBtn = createButton('Update');
+      updateBtn.addEventListener('click', () => {
+        // update the service worker
+        worker.postMessage({action: 'update'});
+      });
+      btnParagraph.append(updateBtn);
+
+      const dismissBtn = createButton('Dismiss');
+      dismissBtn.addEventListener('click', () => {
+        // first move the container offscreen
+        notifSection.classList.remove('shown');
+
+        // remove the content
+        container.remove();
+
+        // remove the section from the accesibility tree
+        notifSection.classList.remove('accessible');
+
+        // move focus back to the previously-focused element
+        currentFocus.focus();
+      });
+
+      btnParagraph.append(dismissBtn);
+
+      container.append(btnParagraph);
+
+      // add the notification section to the accesibility tree
+      // this ensures that the newly added content will be
+      // announced
+      const notifSection = document.querySelector('.notification');
+      notifSection.classList.add('accessible');
+
+      // now add the content
+      notifSection.append(container);
+
+      // display it
+      notifSection.classList.add('shown');
+
+      // save the currently focused item
+      currentFocus = document.activeElement;
+
+      // move focus to update button
+      updateBtn.focus();
+
+      // trap tab key
+      notifSection.addEventListener('keydown', trapTabKey);
+
+      function createButton(text) {
+        const btn = document.createElement('button');
+        btn.innerText = text;
+        btn.setAttribute('type', 'button');
+        btn.setAttribute('aria-labelledby', text.toLowerCase());
+        return btn;
+      }
+
+      // see https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex#modals-and-keyboard-traps
+      function trapTabKey(event) {
+        // Check for TAB key press
+        if (event.keyCode === 9) {
+          event.preventDefault();
+
+          if (document.activeElement === updateBtn) {
+            dismissBtn.focus();
+          } else {
+            updateBtn.focus();
+          }
+        }
+
+        // ESCAPE
+        if (event.keyCode === 27) {
+          // same as clicking dismiss button
+          dismissBtn.click();
+        }
+      }
+    }
+
+  }
+
+  function notifyOnInstall(worker) {
+    worker.addEventListener('statechange', () => {
+      if (worker.state === 'installed') {
+        // notify the user
+        handleUpdateToSW(worker);
+      }
+    });
+  }
 }
 
 /**
