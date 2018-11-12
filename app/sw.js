@@ -72,4 +72,7 @@ self.addEventListener('fetch', event => {
 self.addEventListener('message', event => {
   // check for the contents of event.data
   // call self.skipWaiting() if it matches what's expected
+  if (event.data.action === 'update') {
+    self.skipWaiting();
+  }
 });
