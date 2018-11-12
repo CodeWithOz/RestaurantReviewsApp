@@ -4,7 +4,7 @@ registerServiceWorker();
 function registerServiceWorker() {
   // exit if browser doesn't support SW
   // TODO: this needs to be negated when it's time to test
-  if (!navigator.serviceWorker) return;
+  if (navigator.serviceWorker) return;
 
   navigator.serviceWorker.register('/sw.js')
     .then(reg => {
@@ -21,6 +21,90 @@ function registerServiceWorker() {
       if (reg.waiting) {
         // the new service worker is installed and ready to activate
         console.log('A new SW is installed and ready to activate!');
+      }
+
+      /**
+      * Display the update notification to the user
+      */
+      function displayUpdateNotification() {
+
+        createNotificationHTML();
+
+        function createNotificationHTML() {
+          let currentFocus;
+
+          const container = document.createElement('div');
+          const title = document.createElement('h4');
+          title.innerText = 'Updates Available';
+          container.append(title);
+
+          // buttons
+          const btnParagraph = document.createElement('p');
+          const updateBtn = createButton('Update');
+          updateBtn.addEventListener('click', event => {
+            // update the service worker
+          });
+          btnParagraph.append(updateBtn);
+
+          const dismissBtn = createButton('Dismiss');
+          dismissBtn.addEventListener('click', () => {
+            // remove the notification
+          });
+
+          btnParagraph.append(dismissBtn);
+
+          container.append(btnParagraph);
+
+          // add the notification section to the accesibility tree
+          // this ensures that the newly added content will be
+          // announced
+          const notifSection = document.querySelector('.notification');
+          notifSection.classList.add('accessible');
+
+          // now add the content
+          notifSection.append(container);
+
+          // display it
+          notifSection.classList.add('shown');
+
+          // save the currently focused item
+          currentFocus = document.activeElement;
+
+          // move focus to update button
+          updateBtn.focus();
+
+          // trap tab key
+          notifSection.addEventListener('keydown', trapTabKey);
+
+          function createButton(text) {
+            const btn = document.createElement('button');
+            btn.innerText = text;
+            btn.setAttribute('type', 'button');
+            btn.setAttribute('aria-labelledby', text.toLowerCase());
+            return btn;
+          }
+
+          // see https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex#modals-and-keyboard-traps
+          function trapTabKey(event) {
+            // Check for TAB key press
+            if (event.keyCode === 9) {
+              event.preventDefault();
+
+              if (document.activeElement === updateBtn) {
+                dismissBtn.focus();
+              } else {
+                updateBtn.focus();
+              }
+            }
+
+            // ESCAPE
+            if (event.keyCode === 27) {
+              // same as clicking dismiss button
+              dismissBtn.click();
+            }
+          }
+        }
+
       }
 
       if (reg.installing) {
