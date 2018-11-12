@@ -115,3 +115,37 @@ nav h1 a {
     max-width: 1100px;
   }
 }
+
+/* =============== Update Notification =============== */
+.notification {
+  background-color: #444;
+  border-radius: 10px;
+  bottom: 50px;
+  color: white;
+  left: -1000px;
+  position: fixed;
+  transition: 0.5s;
+  visibility: hidden;
+  width: 200px;
+}
+
+.accessible {
+  visibility: visible;
+}
+
+.shown {
+  left: 25px;
+}
+
+.notification .container {
+  padding: 1em 0;
+  text-align: center;
+}
+
+.notification .container h4 {
+  padding: 0 0 1em;
+}
+
+.notification .container p {
+  margin: 0;
+}
