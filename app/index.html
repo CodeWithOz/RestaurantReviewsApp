@@ -56,9 +56,19 @@
           </div>
         </section>
       </section>
+
       <section>
         <ul id="restaurants-list"></ul>
       </section>
+
+      <!-- labels for the notification buttons for assistive technology users -->
+      <section class="sr-labels">
+        <p id="update" hidden >Update to latest content</p>
+        <p id="dismiss" hidden >Dismiss this notification</p>
+      </section>
+
+      <!-- notification of available updates -->
+      <section class="notification" aria-live="polite"></section>
     </main>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOOlUdzWgBKSbkdGojBta0eEIK1sIqfN8&libraries=places&callback=initMap"></script>
