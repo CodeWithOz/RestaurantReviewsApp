@@ -4,23 +4,29 @@ registerServiceWorker();
 function registerServiceWorker() {
   // exit if browser doesn't support SW
   // TODO: this needs to be negated when it's time to test
-  if (navigator.serviceWorker) return;
+  if (!navigator.serviceWorker) return;
 
   navigator.serviceWorker.register('/sw.js')
     .then(reg => {
       // registration worked!
+      console.log('SW registration worked!');
 
       // exit if page was not loaded with a service worker
-      if (!navigator.serviceWorker.controller) return;
+      if (!navigator.serviceWorker.controller) {
+        console.log('No SW controls this page (first-ever registration)!');
+        return
+      };
 
       /* ========== notify user about updates ========== */
       if (reg.waiting) {
         // the new service worker is installed and ready to activate
+        console.log('A new SW is installed and ready to activate!');
       }
 
       if (reg.installing) {
         // the new service worker is installing
         // listen for when it's installed
+        console.log('A new SW is installing...');
         notifyOnInstall(reg.installing);
       }
 
@@ -28,6 +34,7 @@ function registerServiceWorker() {
         worker.addEventListener('statechange', () => {
           if (worker.state === 'installed') {
             // notify the user
+            console.log('A new SW has installed!');
           }
         });
       }
@@ -35,6 +42,7 @@ function registerServiceWorker() {
       reg.addEventListener('updatefound', () => {
         // reg.installing has become a new SW
         // so repeat the steps as if reg.installing is already present
+        console.log('(updatefound) A new SW is installing...');
         notifyOnInstall(reg.installing);
       });
 
