@@ -26,11 +26,11 @@ function registerServiceWorker() {
       /**
       * Display the update notification to the user
       */
-      function displayUpdateNotification() {
+      function handleUpdateToSW(worker) {
 
-        createNotificationHTML();
+        createNotificationHTML(worker);
 
-        function createNotificationHTML() {
+        function createNotificationHTML(worker) {
           let currentFocus;
 
           const container = document.createElement('div');
@@ -41,8 +41,9 @@ function registerServiceWorker() {
           // buttons
           const btnParagraph = document.createElement('p');
           const updateBtn = createButton('Update');
-          updateBtn.addEventListener('click', event => {
+          updateBtn.addEventListener('click', () => {
             // update the service worker
+            worker.postMessage({action: 'update'});
           });
           btnParagraph.append(updateBtn);
 
