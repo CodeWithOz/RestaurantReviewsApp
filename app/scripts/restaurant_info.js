@@ -14,7 +14,6 @@ window.initMap = () => {
         center: restaurant.latlng,
         scrollwheel: false
       });
-      fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
@@ -39,11 +38,36 @@ const fetchRestaurantFromURL = (callback) => {
         console.error(error);
         return;
       }
-      fillRestaurantHTML();
       callback(null, restaurant);
     });
   }
 };
+
+/**
+ * Get a parameter by name from page URL.
+ */
+function getParameterByName(name, url) {
+  if (!url)
+    url = window.location.href;
+  name = name.replace(/[[\]]/g, '\\$&');
+  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+    results = regex.exec(url);
+  if (!results)
+    return null;
+  if (!results[2])
+    return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// fetch and display restaurant info
+fetchRestaurantFromURL((error, restaurant) => {
+  if (error) { // Got an error!
+    console.error(error);
+  } else {
+    fillRestaurantHTML(restaurant);
+    fillBreadcrumb();
+  }
+});
 
 /**
  * Create restaurant HTML and add it to the webpage
@@ -149,20 +173,4 @@ const fillBreadcrumb = (restaurant=self.restaurant) => {
 
   li.appendChild(strong);
   breadcrumb.appendChild(li);
-};
-
-/**
- * Get a parameter by name from page URL.
- */
-const getParameterByName = (name, url) => {
-  if (!url)
-    url = window.location.href;
-  name = name.replace(/[[\]]/g, '\\$&');
-  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
-    results = regex.exec(url);
-  if (!results)
-    return null;
-  if (!results[2])
-    return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };

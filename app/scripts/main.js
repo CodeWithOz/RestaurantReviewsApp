@@ -80,13 +80,15 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
-  updateRestaurants();
 };
+
+// this must be outside initMap so that it can be reached even offline
+updateRestaurants();
 
 /**
  * Update page and map for current restaurants.
  */
-const updateRestaurants = () => {
+function updateRestaurants() {
   const cSelect = document.getElementById('cuisines-select');
   const nSelect = document.getElementById('neighborhoods-select');
 
@@ -104,7 +106,7 @@ const updateRestaurants = () => {
       fillRestaurantsHTML();
     }
   });
-};
+}
 
 /**
  * Clear current restaurants, their HTML and remove their map markers.
