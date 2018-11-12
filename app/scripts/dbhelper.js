@@ -48,7 +48,17 @@ function registerServiceWorker() {
 
           const dismissBtn = createButton('Dismiss');
           dismissBtn.addEventListener('click', () => {
-            // remove the notification
+            // first move the container offscreen
+            notifSection.classList.remove('shown');
+
+            // remove the content
+            container.remove();
+
+            // remove the section from the accesibility tree
+            notifSection.classList.remove('accessible');
+
+            // move focus back to the previously-focused element
+            currentFocus.focus();
           });
 
           btnParagraph.append(dismissBtn);
