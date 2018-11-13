@@ -80,6 +80,7 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
+  addMarkersToMap();
 };
 
 // this must be outside initMap so that it can be reached even offline
@@ -131,7 +132,6 @@ const fillRestaurantsHTML = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     ul.append(createRestaurantHTML(restaurant));
   });
-  addMarkersToMap();
 };
 
 /**
@@ -176,12 +176,26 @@ const createRestaurantHTML = (restaurant) => {
  * Add markers for current restaurants to the map.
  */
 const addMarkersToMap = (restaurants = self.restaurants) => {
-  restaurants.forEach(restaurant => {
-    // Add marker to the map
-    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
-    google.maps.event.addListener(marker, 'click', () => {
-      window.location.href = marker.url;
+  if (restaurants) {
+    addMarkers(restaurants);
+  } else {
+    DBHelper.fetchRestaurants((error, restaurants) => {
+      if (error) {
+        console.error(error);
+      } else {
+        addMarkers(restaurants);
+      }
     });
-    self.markers.push(marker);
-  });
+  }
+
+  function addMarkers(restaurants) {
+    restaurants.forEach(restaurant => {
+      // Add marker to the map
+      const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
+      google.maps.event.addListener(marker, 'click', () => {
+        window.location.href = marker.url;
+      });
+      self.markers.push(marker);
+    });
+  }
 };
