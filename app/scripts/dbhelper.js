@@ -3,7 +3,6 @@ registerServiceWorker();
 
 function registerServiceWorker() {
   // exit if browser doesn't support SW
-  // TODO: this needs to be negated when it's time to test
   if (!navigator.serviceWorker) return;
 
   navigator.serviceWorker.register('/sw.js')
