@@ -88,7 +88,7 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.alt = restaurant.name;
 
   const cuisine = document.getElementById('restaurant-cuisine');
-  cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.innerHTML = `Type: ${restaurant.cuisine_type}`;
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -146,7 +146,7 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 const createReviewHTML = (review) => {
   const cardHTML = `
     <li>
-      <section class="review-header">
+      <section class="review-header" aria-label="Reviewer Name and Date">
         <p>${review.name}</p>
         <p>${review.date}</p>
       </section>
