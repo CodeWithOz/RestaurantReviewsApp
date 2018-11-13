@@ -4,7 +4,7 @@ registerServiceWorker();
 function registerServiceWorker() {
   // exit if browser doesn't support SW
   // TODO: this needs to be negated when it's time to test
-  if (navigator.serviceWorker) return;
+  if (!navigator.serviceWorker) return;
 
   navigator.serviceWorker.register('/sw.js')
     .then(reg => {
@@ -54,6 +54,7 @@ function registerServiceWorker() {
       let currentFocus;
 
       const container = document.createElement('div');
+      container.classList.add('container');
       const title = document.createElement('h4');
       title.innerText = 'Updates Available';
       container.append(title);
