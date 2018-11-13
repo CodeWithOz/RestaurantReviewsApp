@@ -6,6 +6,20 @@ restaurants. See the original repository
 [here](https://github.com/udacity/mws-restaurant-stage-1/tree/google-maps).
 _**Note**_ that this is the Google Maps branch.
 
+## Using the Web App
+- The app allows you to filter results based on location and type of
+cuisine.
+- For each displayed result, you can view more information about
+the restaurant including hours of operation and reviews.
+- The app is offline-capable 🙌; you will be able to view
+previously-visited pages even without an internet connection.
+  - However, map displays are only available when connected
+to the internet.
+  - Also note that offline capability is only possible
+in browsers that support the Service Worker API. [Click here](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/serviceWorker#Browser_compatibility)
+to see if your
+browser is compatible.
+
 ## Developer Set Up
 First, copy the app's files to your local environment by opening
 your terminal program and running:
