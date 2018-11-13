@@ -148,18 +148,24 @@ const createRestaurantHTML = (restaurant) => {
 
   // container for the text content
   const section = document.createElement('section');
+  section.classList.add('restaurant-info');
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
   section.append(name);
 
+  // container for restaurant location
+  const location = document.createElement('section');
+  location.setAttribute('aria-label', 'Restaurant Location');
+
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
-  section.append(neighborhood);
+  location.append(neighborhood);
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
-  section.append(address);
+  location.append(address);
+  section.append(location);
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';

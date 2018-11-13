@@ -84,7 +84,7 @@
   text-align: center;
 }
 
-#restaurants-list section {
+#restaurants-list .restaurant-info {
   /* pad the text content a little */
   padding: 0 30px 25px;
 }
