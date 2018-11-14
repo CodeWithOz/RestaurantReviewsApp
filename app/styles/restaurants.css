@@ -35,6 +35,17 @@
     text-decoration: underline;
 }
 
+/* Make current page link standout */
+#breadcrumb li:last-child a {
+  color: #444;
+  text-decoration: underline;
+}
+
+#breadcrumb li:last-child a:hover,
+#breadcrumb li:last-child a:focus {
+  color: #2500ff;
+}
+
 /* ====================== Map-Name-Pic ====================== */
 .map-name-pic {
   display: flex;

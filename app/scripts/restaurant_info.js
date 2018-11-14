@@ -166,11 +166,17 @@ const createReviewHTML = (review) => {
 const fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
+  const clickable = document.createElement('a');
+  // set its href to the current page
+  clickable.href = window.location.pathname + window.location.search;
+  // indicate that it's the current page
+  clickable.setAttribute('aria-current', 'page');
 
   // make text bold
   const strong = document.createElement('strong');
   strong.innerHTML = restaurant.name;
 
-  li.appendChild(strong);
+  clickable.appendChild(strong);
+  li.appendChild(clickable);
   breadcrumb.appendChild(li);
 };
