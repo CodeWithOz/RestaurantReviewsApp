@@ -4,6 +4,7 @@
     list-style: none;
     background-color: #eee;
     margin: 0;
+    text-align: left;
     text-transform: uppercase;
 
     /* 40px is the total left and right padding */
